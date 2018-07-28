@@ -1,0 +1,183 @@
+<div class="to-do-box">
+  <div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2 to-do-panel-box">
+      <div class="to-do-panel">
+        <ul>
+          <li (click)="selectTab(1)">
+            <span class="panel-color" style="background-color: #5A96FD;"></span>
+            <span class="fa fa-fw fa-check-square"></span>
+            <span class="panel-text">
+              <div class="panel-title">All tasks</div>
+              <div class="panel-count">
+                <span class="panel-total">{{allTasksListCount}} tasks</span>
+                <span class="panel-overdue">,&nbsp;
+                {{allTasksListOverdue}} overdue</span>
+              </div>
+            </span>
+          </li>
+
+          <li (click)="selectTab(2)">
+            <span class="panel-color" style="background-color: #EDA964"></span>
+            <span class="fa fa-dot-circle-o"></span>
+            <span class="panel-text">
+              <div class="panel-title">Focus List</div>
+              <div class="panel-count">
+                <span class="panel-total">{{focusListCount}} tasks</span>
+                <span class="panel-overdue">,&nbsp;{{focusListOverdue}} overdue</span>
+              </div>
+            </span>
+          </li>
+
+          <li (click)="selectTab(3)">
+            <span class="panel-color" style="background-color: #FEF696"></span>
+            <span class="fa fa-fw fa-star"></span>
+            <span class="panel-text">
+              <div class="panel-title">Starred Tasks</div>
+              <div class="panel-count">
+                <span class="panel-total">{{starredTasksCount}} tasks</span>
+                <span class="panel-overdue">,&nbsp;{{starredTasksOverdue}} overdue</span>
+              </div>
+            </span>
+          </li>
+
+          <li (click)="selectTab(4)">
+            <span class="panel-color" style="background-color: red"></span>
+            <span class="fa fa-envelope-o"></span>
+            <span class="panel-text">
+              <div class="panel-title">Inbox</div>
+              <div class="panel-count">
+                <span class="panel-total">{{checkedTasksCount}} tasks</span>
+              </div>
+            </span>
+          </li>
+
+          <li (click)="selectTab(5)">
+            <span class="panel-color" style="background-color: blue"></span>
+            <span class="fa fa-file-text-o"></span>
+            <span class="panel-text">
+              <div class="panel-title">Unnamed List</div>
+              <div class="panel-count">
+                <span class="panel-total">{{unNamedListCount}} tasks</span>
+                <span class="panel-overdue">,&nbsp;{{unNamedListOverdue}} overdue</span>
+              </div>
+            </span>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-10 to-do-list">
+      <div class="to-do-list-header">
+        <span *ngIf="tab === 1" class="fa fa-fw fa-check-square"></span>
+        <span *ngIf="tab === 1">All Tasks</span>
+        <span *ngIf="tab === 2" class="fa fa-dot-circle-o"></span>
+        <span *ngIf="tab === 2">Focus List</span>
+        <span *ngIf="tab === 3" class="fa fa-fw fa-star"></span>
+        <span *ngIf="tab === 3">Starred Tasks</span>
+        <span *ngIf="tab === 4" class="fa fa-envelope-o"></span>
+        <span *ngIf="tab === 4">Inbox</span>
+        <span *ngIf="tab === 5" class="fa fa-file-text-o"></span>
+        <span *ngIf="tab === 5">Unnamed List</span>
+        <span class="fa fa-plus pull-right" (click)="openModal(template)"></span>
+      </div>
+
+      <div *ngIf="tab === 1">
+        <div *ngFor="let todo of allTasksList">
+          <div class="todo-item-box">
+            <div class="todo-title">{{todo.title}}
+              <span class="pull-right" (click)="deleteItem(todo.id)"> <i class="fa fa-remove"></i></span>
+              <span class="pull-right" (click)="toggleCheck(todo.id)"> <i class="fa fa-envelope-o {{ todo.checked ? 'starred-class': '' }}"></i></span>
+              <span class="pull-right" (click)="toggleFocus(todo.id)"> <i class="fa fa-dot-circle-o {{ todo.focussed ? 'starred-class': '' }}"></i></span>
+              <span class="pull-right" (click)="toggleStar(todo.id)"> <i class="fa fa-star {{ todo.starred ? 'starred-class': '' }}"></i></span>
+            </div>
+            <div class="todo-description">{{todo.description}}</div>
+            <div class="todo-item-footer">
+              <span class="to-do-timestamp">{{todo.createdTime | date}}</span>
+              <span class="to-do-username pull-right"><i class="fa fa-user"></i> {{todo.userName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tab === 2">
+        <div *ngFor="let todo of focusList">
+          <div class="todo-item-box">
+            <div class="todo-title">{{todo.title}}
+            </div>
+            <div class="todo-description">{{todo.description}}</div>
+            <div class="todo-item-footer">
+              <span class="to-do-timestamp">{{todo.createdTime | date}}</span>
+              <span class="to-do-username pull-right"><i class="fa fa-user"></i> {{todo.userName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tab === 3">
+        <div *ngFor="let todo of starredTasks">
+          <div class="todo-item-box">
+            <div class="todo-title">{{todo.title}}
+            </div>
+            <div class="todo-description">{{todo.description}}</div>
+            <div class="todo-item-footer">
+              <span class="to-do-timestamp">{{todo.createdTime | date}}</span>
+              <span class="to-do-username pull-right"><i class="fa fa-user"></i> {{todo.userName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tab === 4">
+        <div *ngFor="let todo of checkedTasks">
+          <div class="todo-item-box">
+            <div class="todo-title">{{todo.title}}
+            </div>
+            <div class="todo-description">{{todo.description}}</div>
+            <div class="todo-item-footer">
+              <span class="to-do-timestamp">{{todo.createdTime | date}}</span>
+              <span class="to-do-username pull-right"><i class="fa fa-user"></i> {{todo.userName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tab === 5">
+        <div *ngFor="let todo of unNamedList">
+          <div class="todo-item-box">
+            <div class="todo-title">{{todo.title}}
+            </div>
+            <div class="todo-description">{{todo.description}}</div>
+            <div class="todo-item-footer">
+              <span class="to-do-timestamp">{{todo.createdTime | date}}</span>
+              <span class="to-do-username pull-right"><i class="fa fa-user"></i> {{todo.userName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- for modal -->
+      <ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Add To-Do Item</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="tdForm" (ngSubmit)="todoComplete(tdForm.valid)">
+            <div class="form-group">
+              <label>Title</label>
+              <input class="form-control" maxlength="30" formControlName="title" id="txt-group-id" type="text" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+              <label class="required">Description</label>
+              <textarea id="txtdesc" maxlength="500" formControlName="description" class="form-control" placeholder="Enter description here"></textarea>
+              <div id="err-txt-color-name" class="text-danger error-cz" *ngIf="!(tdForm.controls.description.valid || (tdForm.controls.description.pristine && !submitted))">
+                <span *ngIf="tdForm.controls.description.hasError('required')">Description is required</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary pull-right" type="submit" [disabled]="!tdForm.valid">Save</button>
+          </form>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+.to-do-box {
+  padding-right: 0;
+  margin: 0;
+  overflow-x: hidden;
+  max-width:2000px;
+}
+.to-do-box .to-do-panel-box {
+  background-color: #434551;
+}
+.to-do-box .to-do-panel ul {
+  padding-left: 0px;
+  list-style-type: none;
+  color: #ffffff;
+}
+.to-do-box .to-do-panel ul li {
+  padding: 10px 0px 10px 20px;
+}
+.to-do-box .to-do-panel ul li .panel-color {
+  margin-right: 15px;
+  padding-left: 0px;
+  display: inline-block;
+  height: 35px;
+  width: 10px;
+}
+.to-do-box .to-do-panel ul .panel-text {
+ display: inline-block;
+ padding-left: 5px;
+}
+.to-do-box .to-do-panel ul .panel-text .panel-title {
+  font-size: 14px;
+}
+.to-do-box .to-do-panel ul .panel-text .panel-count {
+  font-size: 12px;
+}
+.to-do-box .to-do-panel ul .panel-text .panel-overdue {
+  font-size: 12px;
+  color: red;
+}
+.to-do-box .to-do-panel ul .fa {
+  font-size: 24px;
+  vertical-align: super;
+}
+.to-do-box .to-do-panel ul li:hover {
+  background-color:  #1f85a5;
+  cursor: pointer;
+}
+.to-do-box .to-do-panel ul .selected-tab {
+  background-color: #A7A6AB;
+}
+.to-do-box .to-do-list {
+  padding-left: 0px;
+}
+.to-do-box .to-do-list .to-do-list-header {
+  background-color: #999999;
+  color: #ffffff;
+  font-size: 24px;
+  padding: 10px 20px 10px 20px;
+}
+.to-do-box .to-do-list .no-tasks-msg {
+  padding-top: 100px;
+  text-align: center;
+}
+.to-do-box .to-do-list .to-do-list-header .fa-plus {
+  padding: 5px;
+  cursor: pointer;
+}
+.to-do-box .todo-item-box {
+    margin: 20px;
+    border: solid 1px #a7a7a7;
+    border-radius: 5px;
+    padding: 10px;
+}
+.to-do-box .todo-item-box .fa {
+    padding-right: 7px;
+    cursor: pointer;
+}
+.to-do-box .todo-item-box .fa:hover {
+    color: red;
+}
+.to-do-box .starred-class {
+  color: red;
+}
+.to-do-box .todo-description {
+    font-size: 14px;
+}
+.to-do-box .todo-item-footer {
+    padding-top: 20px;
+    font-size: 12px;
+}
